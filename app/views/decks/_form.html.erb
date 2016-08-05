@@ -1,0 +1,34 @@
+<div class= "form">
+<%= form_for ([@player, @deck]) do |f| %>
+
+<% if @deck.errors.any? %>
+<div id="error_explanation">
+    <h2>
+      <%= pluralize(@deck.errors.count, "error") %>
+      stopped the deck from being created.  Here's why:
+    </h2>
+      <% @deck.errors.full_messages.each do |msg| %>
+        <p> <%= msg %> </p>
+      <%end%>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :character_class, "Select a Class" %>
+    <%= f.select :character_class, ["Druid", "Hunter", "Mage", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"] %>
+  </p>
+
+  <p>
+    <%= f.label :img_url %>
+    <%= f.text_field :img_url %>
+  </p>
+
+  <p> <%= f.submit %> </p>
+
+<% end %>
+</div>

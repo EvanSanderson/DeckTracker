@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/decks' => "decks#all_index"
+
 end

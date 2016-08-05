@@ -1,0 +1,33 @@
+<%= form_for ([@player, @deck, @card]) do |f| %>
+
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</p>
+
+<p>
+  <%= f.label :effect %>
+  <%= f.select :effect, ["None", "Charge", "Discover", "Divine Shield", "Taunt"] %>
+</p>
+
+<p>
+  <%= f.label :img_url %>
+  <%= f.text_field :img_url %>
+</p>
+
+<p>
+  <%= f.label :descrption %>
+  <%= f.text_area :description %>
+</p>
+
+<p> <%= f.label :attack %> <%= f.text_field :attack %> | <%= f.label :defense %> <%= f.text_field :defense %>
+</p>
+
+<p> <img src="http://bit.ly/2aUTM25"> <%= f.label :mana %> <%= f.select :mana, [1,2,3,4,5,6,7,8,9,10] %> | <%= f.label :rarity %> <%= f.select :rarity, ["Common", "Rare", "Epic", "Legendary"] %>
+</p>
+
+<p>
+  <%= f.submit %>
+</p>
+
+<% end %>

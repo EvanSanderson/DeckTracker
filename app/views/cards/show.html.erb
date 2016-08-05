@@ -1,0 +1,8 @@
+<div ="cardStats">
+<h3> <%= @card.name %> </h3> | <%= link_to '(edit)', edit_player_deck_card_path(@player, @deck, @card) %> | <%= link_to "(-)", player_deck_card_path(@player, @deck, @card), method: :delete %>
+<img src="<%= @card.img_url %>">
+<p> <%= @card.effect %> </p>
+<p> <%= @card.description %> </p>
+<p> <%= @card.attack %> | <%= @card.defense %> </p>
+<p> <%= @card.mana %> <img src="http://hearthstoneplayers.com/img/icons/mana.png"> | <%= @card.rarity %> </p>
+</div>
