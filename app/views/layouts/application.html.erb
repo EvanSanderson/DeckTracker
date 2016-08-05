@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hearthstone</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <p> | <%= link_to 'Back to Home', players_path %> </p>
+
+    <%= yield %>
+
+    <% flash.each do |type, message| %>
+      <p class="<%= type %>"> <%= message %> </p>
+    <% end %>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<%= form_for @player do |f|%>
+
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</p>
+
+<p>
+  <%= f.label :wins %>
+  <%= f.text_field :wins %>
+</p>
+
+<p>
+  <%= f.label :losses %>
+  <%= f.text_field :losses %>
+</p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
