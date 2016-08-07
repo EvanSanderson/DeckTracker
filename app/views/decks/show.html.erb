@@ -4,6 +4,8 @@
 
 <p> WINS: <%= @deck.wins %> | LOSSES: <%= @deck.losses %> </p>
 
+<h3> <%= link_to 'Add a Matchup', new_player_deck_matchup_path(@deck.player, @deck) %> | <%= link_to 'View Matchups', player_deck_matchups_path(@deck.player, @deck) %></h3>
+
 <%= link_to '+ card', new_player_deck_card_path(@deck.player, @deck) %>
 
 <div class="deckCards">

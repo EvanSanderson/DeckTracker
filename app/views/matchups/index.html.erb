@@ -1,0 +1,7 @@
+<h1> Match-Ups </h1>
+
+<% @matchups.each do |matchup| %>
+<%= link_to matchup.character_class, player_deck_matchup_path(@player, @deck, matchup) %> | <%= matchup.play_style %>
+<p> <%= matchup.wins %> | <%= matchup.losses %> </p>
+
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805141428) do
+ActiveRecord::Schema.define(version: 20160807200700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(version: 20160805141428) do
     t.index ["player_id"], name: "index_decks_on_player_id", using: :btree
   end
 
+  create_table "matchups", force: :cascade do |t|
+    t.string   "character_class"
+    t.string   "play_style"
+    t.integer  "wins"
+    t.integer  "losses"
+    t.string   "notes"
+    t.integer  "deck_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["deck_id"], name: "index_matchups_on_deck_id", using: :btree
+  end
+
   create_table "meta", force: :cascade do |t|
     t.string   "play_style"
     t.integer  "deck_id"
@@ -62,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160805141428) do
 
   add_foreign_key "cards", "decks"
   add_foreign_key "decks", "players"
+  add_foreign_key "matchups", "decks"
   add_foreign_key "meta", "cards"
   add_foreign_key "meta", "decks"
 end

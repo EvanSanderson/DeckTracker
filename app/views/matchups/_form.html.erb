@@ -1,0 +1,30 @@
+<%= form_for ([@deck.player, @deck, @matchup]) do |f| %>
+
+  <p>
+    <%= f.label :character_class %>
+    <%= f.select :character_class, ["Druid", "Hunter", "Mage", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"] %>
+  </p>
+
+  <p>
+    <%= f.label :play_style %>
+    <%= f.text_field :play_style %>
+  </p>
+
+  <p>
+    <%= f.label :wins %>
+    <%= f.text_field :wins %>
+  </p>
+
+  <p>
+    <%= f.label :losses %>
+    <%= f.text_field :losses %>
+  </p>
+
+  <p>
+    <%= f.label :notes, "Add a Note" %>
+    <%= f.text_area :notes %>
+  </p>
+
+<%= f.submit %>
+
+<% end %>

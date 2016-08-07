@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :players do
     resources :decks do
         resources :cards
+        resources :matchups
     end
   end
 
