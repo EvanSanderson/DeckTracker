@@ -5,3 +5,5 @@
 <p> <%= matchup.wins %> | <%= matchup.losses %> </p>
 
 <% end %>
+
+<%= pie_chart Matchup.group(:character_class).count %>
