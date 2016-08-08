@@ -12,4 +12,4 @@
 <%= column_chart @matchups.group(:character_class).average(:wins), ytitle: "Avg Wins" %>
 
 <h1> Duration Over Time </h1>
-<%= line_chart @matchups.group("date(matchups.created_at)").sum(:wins) %>
+<%= line_chart @matchups.group("date(matchups.updated_at)").sum(:wins) %>

@@ -1,5 +1,6 @@
 class DecksController < ApplicationController
 
+
     def all_index
       @decks = Deck.all
     end
@@ -12,6 +13,16 @@ class DecksController < ApplicationController
     def show
       @player = Player.find(params[:player_id])
       @deck = Deck.find(params[:id])
+      # @deck.matchups.each do |matchup|
+      #   @deck.wins += matchup.wins
+      #   @deck.losses += matchup.losses
+      # end
+      @total_wins = 0
+      @total_losses = 0
+      @player.decks.each do |deck|
+         @total_wins = @total_wins + deck.wins
+         @total_losses = @total_losses + deck.losses
+      end
     end
 
     def create

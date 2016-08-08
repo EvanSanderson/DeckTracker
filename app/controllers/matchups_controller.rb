@@ -58,6 +58,7 @@ class MatchupsController < ApplicationController
     redirect_to player_deck_path(@deck.player, @deck), notice: "You succesfully deleted the matchup!"
   end
 
+
   private
     def params_matchup
       params.require(:matchup).permit(:character_class, :play_style, :wins, :losses, :notes)

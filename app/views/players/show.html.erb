@@ -1,12 +1,11 @@
 <h1> <%= @player.name %> </h1>
 <h2> <%= link_to 'Create A Deck', new_player_deck_path(@player) %>
-<h3> TOTAL WINS: <%= @player.wins %> | TOTAL LOSSES: <%= @player.losses %> </h3>
 
 <% @player.decks.each do |deck| %>
 
   <h4> <%= link_to deck.name, player_deck_path(@player, deck) %> | <%= deck.character_class %> </h4>
-  <p> WINS: <%= deck.wins %> | LOSSES <%= deck.losses %> </p>
-  <img src="<%= deck.img_url %>">
+  <p> <%= link_to 'Delete This Deck', player_deck_path(@player, deck), method: :delete %> </p>
+    <img src="<%= deck.img_url %>">
 
   <% end %>
 

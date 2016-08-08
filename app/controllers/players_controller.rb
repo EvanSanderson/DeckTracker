@@ -44,6 +44,7 @@ def destroy
   redirect_to players_path, notice: "The player has been succesfully deleted!"
 end
 
+
   private
     def params_player
       params.require(:player).permit(:name, :wins, :losses)

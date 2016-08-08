@@ -1,8 +1,9 @@
 <h1> <%= link_to @deck.player.name, player_path(@deck.player) %>'s <%= @deck.name %>  | <%= link_to '(edit)', edit_player_deck_path(@deck.player, @deck) %> | <%= link_to '(delete)', player_deck_path(@deck.player, @deck), method: :delete, data: {confirm: "Are you sure?"} %></h1>
+<h2> TOTAL WINS: <%= @total_wins %> | TOTAL LOSSES: <%= @total_losses %>
 <h3> <%= @deck.character_class %> </h3>
 <img src="<%= @deck.img_url %>">
 
-<p> WINS: <%= @deck.wins %> | LOSSES: <%= @deck.losses %> </p>
+<p> Wins For This Deck: <%= @deck.wins %> | Losses for this Deck: <%= @deck.losses %> </p>
 
 <h3> <%= link_to 'Add a Matchup', new_player_deck_matchup_path(@deck.player, @deck) %> | <%= link_to 'View Matchups', player_deck_matchups_path(@deck.player, @deck) %></h3>
 
