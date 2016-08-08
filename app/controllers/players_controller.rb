@@ -10,6 +10,7 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @decks = @player.decks
   end
 
   def create

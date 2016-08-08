@@ -2,6 +2,8 @@
 
   <h3> <%= @matchup.character_class %> | <%= @matchup.play_style %> </h3>
 
-  <p> <%= @matchup.wins %> | <%= @matchup.losses %> </p>
+  <p> <%= @matchup.wins %> wins | <%= @matchup.losses %> losses </p>
 
 <p> <%= @matchup.notes %> </p>
+
+<p> <%= link_to "Back to #{@matchup.deck.name}", player_deck_path(@matchup.deck.player, @matchup.deck) %> </p>

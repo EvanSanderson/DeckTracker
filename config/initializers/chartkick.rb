@@ -1,1 +1,4 @@
-Chartkick.options = { library: { legend: { enabled: true }, exporting: { enabled: false }, backgroundColor: "transparent", height: "300px", width: "200px", colors: ["#2c3e50", "#2980b9", "#e74c3c", "#c0392b"] } }
+Chartkick.options = {
+  height: "300px",
+   colors: ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "0000ff"]
+ }

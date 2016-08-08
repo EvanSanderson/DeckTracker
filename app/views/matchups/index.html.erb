@@ -5,5 +5,10 @@
 <p> <%= matchup.wins %> | <%= matchup.losses %> </p>
 
 <% end %>
+<p> <%= link_to "Back to #{@deck.name}", player_deck_path(@player, @deck) %> </p>
 
-<%= pie_chart Matchup.group(:character_class).count %>
+<h1> Average Wins By Matchup </h1>
+<%= column_chart @matchups.group(:character_class).average(:wins), ytitle: "Avg Wins" %>
+
+<h1> Duration Over Time </h1>
+<%= line_chart @matchups.group("date(matchups.created_at)").sum(:wins) %>

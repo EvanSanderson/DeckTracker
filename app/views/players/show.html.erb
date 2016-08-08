@@ -9,4 +9,6 @@
   <img src="<%= deck.img_url %>">
 
   <% end %>
+
+
   <p> | <%= link_to 'Delete This Player', player_path(@player), method: :delete, data: { confirm: "Are you sure?"} %> | </p>
