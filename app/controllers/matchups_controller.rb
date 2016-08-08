@@ -5,7 +5,7 @@ class MatchupsController < ApplicationController
     @deck = Deck.find(params[:deck_id])
     @matchups = @deck.matchups.all
   end
-  
+
   def show
     @player = Player.find(params[:player_id])
     @deck = Deck.find(params[:deck_id])
@@ -27,6 +27,35 @@ class MatchupsController < ApplicationController
       render 'new'
     end
 
+  end
+
+  def edit
+    @player = Player.find(params[:player_id])
+    @deck = Deck.find(params[:deck_id])
+    @matchup = Matchup.find(params[:id])
+  end
+
+  def update
+    @player = Player.find(params[:player_id])
+    @deck = Deck.find(params[:deck_id])
+    @matchup = @deck.matchups.find(params[:id])
+    @matchup.update(params_matchup)
+
+    if @matchup.save
+      redirect_to player_deck_path(@deck.player, @deck), notice: "You succesfully updated the matchup!"
+    else
+      render 'edit'
+    end
+
+  end
+
+  def destroy
+    @player = Player.find(params[:player_id])
+    @deck = Deck.find(params[:deck_id])
+    @matchup = @deck.matchups.find(params[:id])
+    @matchup.destroy
+
+    redirect_to player_deck_path(@deck.player, @deck), notice: "You succesfully deleted the matchup!"
   end
 
   private

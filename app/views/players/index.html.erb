@@ -9,7 +9,7 @@
 
   <p> Decks: </p>
     <ul>
-      <li> <%= deck.name %></li>
+      <li> <%= link_to deck.name, player_deck_path(deck.player, deck) %></li>
     </ul>
 
     <% end %>

@@ -3,6 +3,7 @@
   <h3> <%= @matchup.character_class %> | <%= @matchup.play_style %> </h3>
 
   <p> <%= @matchup.wins %> wins | <%= @matchup.losses %> losses </p>
+  <p> <%= link_to 'Edit Matchup', edit_player_deck_matchup_path(@matchup.deck.player, @matchup.deck, @matchup) %> </p>
 
 <p> <%= @matchup.notes %> </p>
 
