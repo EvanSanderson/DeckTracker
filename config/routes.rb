@@ -6,11 +6,9 @@ Rails.application.routes.draw do
   resources :players do
     resources :decks do
         resources :cards
-        resources :matchups do
-          member do
-            put :increment_wins
-          end
-        end 
+        resources :matchups
+        put "increment_wins", on: :member
+        put "increment_losses", on: :member
     end
   end
 

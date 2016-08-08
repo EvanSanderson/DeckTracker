@@ -25,6 +25,20 @@ class DecksController < ApplicationController
       end
     end
 
+    def increment_wins
+      @deck = Deck.find(params[:id])
+      @deck.wins += 1
+      @deck.save
+      redirect_to player_path(@deck.player), notice: "Added a win!"
+    end
+
+  def increment_losses
+    @deck = Deck.find(params[:id])
+    @deck.losses += 1
+    @deck.save
+    redirect_to player_path(@deck.player), notice: "Added a loss!"
+  end
+
     def create
       @player = Player.find(params[:player_id])
       @deck = @player.decks.create(params_deck)

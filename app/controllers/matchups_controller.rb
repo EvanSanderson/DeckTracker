@@ -10,6 +10,13 @@ class MatchupsController < ApplicationController
     @player = Player.find(params[:player_id])
     @deck = Deck.find(params[:deck_id])
     @matchup = @deck.matchups.find(params[:id])
+
+    @total_wins = 0
+    @total_losses = 0
+    @deck.matchups.each do |matchup|
+       @total_wins = @total_wins + matchup.wins
+       @total_losses = @total_losses + matchup.losses
+    end
   end
 
   def new

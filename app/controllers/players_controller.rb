@@ -11,6 +11,12 @@ class PlayersController < ApplicationController
   def show
     @player = Player.find(params[:id])
     @decks = @player.decks
+    @total_wins = 0
+    @total_losses = 0
+    @player.decks.each do |deck|
+       @total_wins = @total_wins + deck.wins
+       @total_losses = @total_losses + deck.losses
+    end
   end
 
   def create

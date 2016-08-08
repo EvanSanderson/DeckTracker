@@ -3,19 +3,29 @@
 <h3> <%= @deck.character_class %> </h3>
 <img src="<%= @deck.img_url %>">
 
-<p> Wins For This Deck: <%= @deck.wins %> | Losses for this Deck: <%= @deck.losses %> </p>
-
+<p> Wins For This Deck: <%= @total_wins %> | Losses for this Deck: <%= @total_losses %> </p>
+<p> <%= link_to 'Add a Win', increment_wins_player_deck_path(@deck.player, @deck), method: :put %> | <%= link_to 'Add a Loss', increment_losses_player_deck_path(@deck.player, @deck), method: :put %></p>
 <h3> <%= link_to 'Add a Matchup', new_player_deck_matchup_path(@deck.player, @deck) %> | <%= link_to 'View Matchups', player_deck_matchups_path(@deck.player, @deck) %></h3>
 
+<h1> Wins By Playstyles </h1>
+<%= bar_chart @deck.matchups.group(:play_style).average(:wins), ytitle: "Avg Wins" %>
+
+<h1> Losses By Playstyles </h1>
+<%= bar_chart @deck.matchups.group(:play_style).average(:losses), ytitle: "Avg Losses" %>
+
+<h1> Test Chart </h1>
+<%= bar_chart @deck.matchups.map { |matchup|
+  {name: matchup.character_class, data: matchup.wins, discrete: true}
+} %>
 <%= link_to '+ card', new_player_deck_card_path(@deck.player, @deck) %>
 
 
 <div class="deckCards">
-<% @deck.cards.each do |card| %>
+  <% @deck.cards.each do |card| %>
 
   <p> Cards: </p>
   <ul>
     <li><%= link_to card.name, player_deck_card_path(@deck.player, @deck, card)%></li>
   </ul>
 
-<% end %>
+  <% end %>

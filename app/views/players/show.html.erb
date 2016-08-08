@@ -1,5 +1,6 @@
 <h1> <%= @player.name %> </h1>
-<h2> <%= link_to 'Create A Deck', new_player_deck_path(@player) %>
+<h2> TOTAL PLAYER WINS: <%= @total_wins %> | TOTAL PLAYER LOSSES: <%= @total_losses %> </h2>
+<h4> <%= link_to 'Create A Deck', new_player_deck_path(@player) %> </h4>
 
 <% @player.decks.each do |deck| %>
 
@@ -11,3 +12,15 @@
 
 
   <p> | <%= link_to 'Delete This Player', player_path(@player), method: :delete, data: { confirm: "Are you sure?"} %> | </p>
+
+<h4> Total Career Wins </h4>
+<%= pie_chart @player.decks.group(:character_class).sum(:wins), title: "Wins" %>
+
+<h4> Total Career Losses </h4>
+<%= pie_chart @player.decks.group(:character_class).sum(:losses), title: "Losses" %>
+
+<h4> Wins By Class </h4>
+  <%= column_chart @player.decks.group(:character_class).average(:wins), ytitle: "Avg Wins", xtitle: "Class" %>
+
+<h4> Wins By Deck </h4>
+  <%= bar_chart @player.decks.group(:name).average(:wins), ytitle: "Avg Wins", xtitle: "Deck" %>
