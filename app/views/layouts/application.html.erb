@@ -6,6 +6,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'https://code.highcharts.com'%>
+    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Asul' %>
   </head>
 
   <nav class="navbar navbar-default navbar-fixed-top" role="naviation">
@@ -21,18 +22,25 @@
       </div>
           <div class="collapse navbar-collapse" id="nav-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li role="presentation"><%= link_to 'Home', players_path %></li>
+          <li role="presentation"><%= link_to 'All Players', players_path %></li>
           <li role="presentation"><%= link_to 'All Decks', decks_path %></li>
         </ul>
       </div>
   </div>
 </nav>
-  <p> | <%= link_to 'Back to Home', players_path %> | <%= link_to 'Decks', decks_path %> </p>
-
+<div class="main-container">
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <% flash.each do |type, message| %>
+        <%= content_tag :div, message, class: "alert alert-#{type}" %>
+      <% end %>
+    </div>
+  </div>
     <%= yield %>
-
-    <% flash.each do |type, message| %>
-      <p class="<%= type %>"> <%= message %> </p>
-    <% end %>
+</div>
+<div class="main-container">
+</div>
   </body>
 </html>

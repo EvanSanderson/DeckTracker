@@ -1,25 +1,25 @@
-<h1> <%= @player.name %> </h1>
-<h2> TOTAL PLAYER WINS: <%= @total_wins %> | TOTAL PLAYER LOSSES: <%= @total_losses %> </h2>
-<h4> <%= link_to 'Create A Deck', new_player_deck_path(@player) %> | <%= link_to 'Delete This Player', player_path(@player), method: :delete, data: { confirm: "Are you sure?"} %> </h4>
+<div class= "heading">
+      <h1> <%= @player.name %> <%= link_to '(edit)', edit_player_path(@player) %></h1>
 
+      <h2> TOTAL PLAYER WINS: <%= @total_wins %> | TOTAL PLAYER LOSSES: <%= @total_losses %> </h2>
+
+      <h4> <%= link_to 'Create A Deck', new_player_deck_path(@player) %> | <%= link_to 'Delete This Player', player_path(@player), method: :delete, data: { confirm: "Are you sure?"} %> </h4>
+</div>
+
+<%= pie_chart({"wins" => @total_wins, "losses" => @total_losses}) %>
+
+<div class="container-fluid">
+<div class="row">
 <% @player.decks.each do |deck| %>
+<div class="col-md-5 player_decks">
 
   <h4> <%= link_to deck.name, player_deck_path(@player, deck) %> | <%= deck.character_class %> </h4>
+
     <img src="<%= deck.img_url %>">
 
+    <%= bar_chart deck.matchups.group(:character_class).average(:wins), ytitle: "Avg Wins", xtitle: "Class Matchup" %>
+    <%= bar_chart deck.matchups.group(:character_class).average(:losses), ytitle: "Avg Losses", xtitle: "Class Matchup" %>
+</div>
   <% end %>
-
-
-  <p> | <%= link_to 'Delete This Player', player_path(@player), method: :delete, data: { confirm: "Are you sure?"} %> | </p>
-
-<h4> Total Career Wins </h4>
-<%= pie_chart @player.decks.group(:character_class).sum(:wins), title: "Wins" %>
-
-<h4> Total Career Losses </h4>
-<%= pie_chart @player.decks.group(:character_class).sum(:losses), title: "Losses" %>
-
-<h4> Wins By Class </h4>
-  <%= column_chart @player.decks.group(:character_class).average(:wins), ytitle: "Avg Wins", xtitle: "Class" %>
-
-<h4> Wins By Deck </h4>
-  <%= bar_chart @player.decks.group(:name).average(:wins), ytitle: "Avg Wins", xtitle: "Deck" %>
+</div>
+</div>

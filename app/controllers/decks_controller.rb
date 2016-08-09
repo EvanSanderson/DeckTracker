@@ -13,16 +13,8 @@ class DecksController < ApplicationController
     def show
       @player = Player.find(params[:player_id])
       @deck = Deck.find(params[:id])
-      # @deck.matchups.each do |matchup|
-      #   @deck.wins += matchup.wins
-      #   @deck.losses += matchup.losses
-      # end
-      @total_wins = 0
-      @total_losses = 0
-      @deck.matchups.each do |matchup|
-         @total_wins = @total_wins + matchup.wins
-         @total_losses = @total_losses + matchup.losses
-      end
+      @total_wins = @deck.get_wins
+      @total_losses = @deck.get_losses
     end
 
 
@@ -59,6 +51,7 @@ class DecksController < ApplicationController
 
     redirect_to player_path(@deck.player), notice: "You've succesfully deleted this deck!"
   end
+
 
       private
         def params_deck

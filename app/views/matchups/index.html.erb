@@ -1,13 +1,17 @@
-<h1> Match-Ups </h1>
+<div class="heading">
+  <h1> Match-Ups </h1>
+  <p> <%= link_to "Back to #{@deck.name}", player_deck_path(@player, @deck) %> </p>
+</div>
 
+<div class="row">
 <% @matchups.each do |matchup| %>
+  <div class="col-md-3 player_decks">
 <%= link_to matchup.character_class, player_deck_matchup_path(@player, @deck, matchup) %> | <%= matchup.play_style %>
 <p> <%= matchup.wins %> | <%= matchup.losses %> </p>
-
-<p> <%= link_to 'Delete This Matchup', player_deck_matchup_path(@player, @deck, matchup), method: :delete %> </p>
-
+<p> <%= link_to 'Add a Win', increment_wins_player_deck_matchup_path(@player, @deck, matchup), method: :put %> | <%= link_to 'Add a Loss', increment_losses_player_deck_matchup_path(@player, @deck, matchup), method: :put %></p>
+  </div>
 <% end %>
-<p> <%= link_to "Back to #{@deck.name}", player_deck_path(@player, @deck) %> </p>
+</div>
 
 <h1> Average Wins By Matchup </h1>
 <%= column_chart @matchups.group(:character_class).average(:wins), ytitle: "Avg Wins" %>

@@ -11,12 +11,6 @@ class MatchupsController < ApplicationController
     @deck = Deck.find(params[:deck_id])
     @matchup = @deck.matchups.find(params[:id])
 
-    @total_wins = 0
-    @total_losses = 0
-    @deck.matchups.each do |matchup|
-       @total_wins = @total_wins + matchup.wins
-       @total_losses = @total_losses + matchup.losses
-    end
   end
 
   def new
@@ -31,7 +25,7 @@ class MatchupsController < ApplicationController
     @matchup.wins += 1
     @matchup.save
 
-    redirect_to player_deck_path(@player, @deck), notice: "Added a win!"
+    redirect_to player_deck_matchup_path(@player, @deck, @matchup), notice: "Added a win!"
   end
 
 def increment_losses
@@ -41,7 +35,7 @@ def increment_losses
   @matchup.losses += 1
   @matchup.save
 
-  redirect_to player_deck_path(@player, @deck), notice: "Added a loss!"
+  redirect_to player_deck_matchup_path(@player, @deck, @matchup), notice: "Added a loss!"
 end
 
   def create

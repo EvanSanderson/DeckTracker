@@ -1,16 +1,16 @@
-<h1> Players <%= link_to "+", new_player_path %></h1>
+<h1> Players <%= link_to new_player_path, class: "btn btn-primary btn-lg" do %><i class="glyphicon glyphicon-plus"></i>
+  <% end %></h1>
+<div class = "row">
+  <% @players.each do |player| %>
 
-<% @players.each do |player| %>
-<p> <%= link_to player.name, player_path(player) %> | <%= link_to 'edit', edit_player_path(player) %></p>
-<p> Wins: <%= player.wins %> </p>
-<p> Losses: <%= player.losses %> </p>
+  <div class = "col-md-6 players_each">
 
-  <% player.decks.each do |deck| %>
 
-  <p> Decks: </p>
-    <ul>
-      <li> <%= link_to deck.name, player_deck_path(deck.player, deck) %></li>
-    </ul>
+  <p> <%= link_to player.name, player_path(player), class: 'btn btn-success btn-lg' %> | <%= link_to 'edit', edit_player_path(player), class: 'btn btn-success btn-md' %></p>
 
+  <p> Wins: <%= player.get_wins %> </p>
+
+  <p> Losses: <%= player.get_losses %> </p>
+
+</div>
     <% end %>
-<% end %>

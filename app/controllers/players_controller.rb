@@ -11,20 +11,16 @@ class PlayersController < ApplicationController
   def show
     @player = Player.find(params[:id])
     @decks = @player.decks
-    @total_wins = 0
-    @total_losses = 0
-    @player.decks.each do |deck|
-       @total_wins = @total_wins + deck.wins
-       @total_losses = @total_losses + deck.losses
-    end
-    @player.wins = @total
+    @total_wins = @player.get_wins
+    @total_losses = @player.get_losses
   end
 
   def create
     @player = Player.create(params_player)
 
     if @player.save
-      redirect_to @player, notice: "You succesfully created a new player!"
+      flash[:success] = "You succesfully created a new player!"
+      redirect_to @player
     else
       render 'new'
     end
@@ -39,7 +35,8 @@ def update
   @player.update(params_player)
 
   if @player.save
-    redirect_to @player, notice: "You've succesfully updated this player!"
+    flash[:success] = "You succesfully updated a player!"
+    redirect_to @player
   else
     render 'edit'
   end

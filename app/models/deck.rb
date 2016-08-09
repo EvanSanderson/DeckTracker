@@ -8,5 +8,21 @@ class Deck < ApplicationRecord
   validates :wins, presence: true
   validates :losses, presence: true
 
+  def get_wins
+    sum = 0
+    self.matchups.each do |matchup|
+      sum += matchup.wins
+    end
+    sum
+  end
+
+  def get_losses
+    sum = 0
+    self.matchups.each do |matchup|
+      sum += matchup.losses
+    end
+    sum
+  end
+
 
 end

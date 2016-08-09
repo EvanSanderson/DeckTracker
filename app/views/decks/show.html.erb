@@ -1,30 +1,24 @@
-<h1> <%= link_to @deck.player.name, player_path(@deck.player) %>'s <%= @deck.name %>  | <%= link_to '(edit)', edit_player_deck_path(@deck.player, @deck) %> | <%= link_to '(delete)', player_deck_path(@deck.player, @deck), method: :delete, data: {confirm: "Are you sure?"} %></h1>
-<h2> TOTAL WINS: <%= @total_wins %> | TOTAL LOSSES: <%= @total_losses %>
-<h3> <%= @deck.character_class %> </h3>
-<img src="<%= @deck.img_url %>">
+<div class = "heading" >
+    <h1> <%= link_to @deck.player.name, player_path(@deck.player) %>'s <%= @deck.name %>  | <%= link_to '(edit)', edit_player_deck_path(@deck.player, @deck) %> | <%= link_to '(delete)', player_deck_path(@deck.player, @deck), method: :delete, data: {confirm: "Are you sure?"} %></h1>
+    <h2> Wins: <%= @total_wins %> |  Losses: <%= @total_losses %>
+    <h3> <%= @deck.character_class %> </h3>
+    <img src="<%= @deck.img_url %>">
+    <h3> <%= link_to 'Add a Matchup', new_player_deck_matchup_path(@deck.player, @deck) %> | <%= link_to 'View Matchups', player_deck_matchups_path(@deck.player, @deck) %></h3>
+</div>
+<div class="row">
+  <div class="col-md-5 player_decks">
+    <h1> Wins By Playstyles </h1>
+    <%= bar_chart @deck.matchups.group(:play_style).average(:wins), ytitle: "Avg Wins" %>
+  </div>
 
-<p> Wins For This Deck: <%= @total_wins %> | Losses for this Deck: <%= @total_losses %> </p>
-<h3> <%= link_to 'Add a Matchup', new_player_deck_matchup_path(@deck.player, @deck) %> | <%= link_to 'View Matchups', player_deck_matchups_path(@deck.player, @deck) %></h3>
+  <div class="col-md-5 player_decks">
+      <h1> Losses By Playstyles </h1>
+      <%= bar_chart @deck.matchups.group(:play_style).average(:losses), ytitle: "Avg Losses" %>
+  </div>
+</div>
 
-<h1> Wins By Playstyles </h1>
-<%= bar_chart @deck.matchups.group(:play_style).average(:wins), ytitle: "Avg Wins" %>
-
-<h1> Losses By Playstyles </h1>
-<%= bar_chart @deck.matchups.group(:play_style).average(:losses), ytitle: "Avg Losses" %>
-
-<h1> Test Chart </h1>
-<%= bar_chart @deck.matchups.map { |matchup|
-  {name: matchup.character_class, data: matchup.wins, discrete: true}
-} %>
-<%= link_to '+ card', new_player_deck_card_path(@deck.player, @deck) %>
-
-
-<div class="deckCards">
-  <% @deck.cards.each do |card| %>
-
-  <p> Cards: </p>
-  <ul>
-    <li><%= link_to card.name, player_deck_card_path(@deck.player, @deck, card)%></li>
-  </ul>
-
-  <% end %>
+<div class= "row">
+    <div class="col-md-6">
+    <p> <%= link_to 'View Cards', player_deck_cards_path(@deck.player, @deck) %> | <%= link_to '(+)', new_player_deck_card_path(@deck.player, @deck) %>
+  </div>
+</div>

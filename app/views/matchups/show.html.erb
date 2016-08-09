@@ -1,13 +1,14 @@
-<h1> View This Matchup <h1>
+<div class ="heading">
+  <h1> <%= @matchup.character_class %> | <%= @matchup.play_style %> </h1>
+  <p> <%= link_to "Back to #{@matchup.deck.name}", player_deck_path(@matchup.deck.player, @matchup.deck) %> </p>
+</div>
 
-  <h3> <%= @matchup.character_class %> | <%= @matchup.play_style %> </h3>
-
+<div class="matchup">
   <p> <%= @matchup.wins %> wins | <%= @matchup.losses %> losses </p>
 
   <p> <%= link_to 'Add a Win', increment_wins_player_deck_matchup_path(@player, @deck, @matchup), method: :put %> | <%= link_to 'Add a Loss', increment_losses_player_deck_matchup_path(@player, @deck, @matchup), method: :put %></p>
 
-  <p> <%= link_to 'Edit Matchup', edit_player_deck_matchup_path(@matchup.deck.player, @matchup.deck, @matchup) %> </p>
+  <p> <%= link_to 'Edit Matchup', edit_player_deck_matchup_path(@matchup.deck.player, @matchup.deck, @matchup) %> |  <%= link_to 'Delete This Matchup', player_deck_matchup_path(@player, @deck, @matchup), method: :delete %> </p>
 
 <p> <%= @matchup.notes %> </p>
-
-<p> <%= link_to "Back to #{@matchup.deck.name}", player_deck_path(@matchup.deck.player, @matchup.deck) %> </p>
+</div>
