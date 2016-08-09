@@ -4,7 +4,8 @@
 
   <p> <%= @matchup.wins %> wins | <%= @matchup.losses %> losses </p>
 
- <p> <%= link_to 'Add a Win', :method => :increment_wins %>
+  <p> <%= link_to 'Add a Win', increment_wins_player_deck_matchup_path(@player, @deck, @matchup), method: :put %> | <%= link_to 'Add a Loss', increment_losses_player_deck_matchup_path(@player, @deck, @matchup), method: :put %></p>
+
   <p> <%= link_to 'Edit Matchup', edit_player_deck_matchup_path(@matchup.deck.player, @matchup.deck, @matchup) %> </p>
 
 <p> <%= @matchup.notes %> </p>

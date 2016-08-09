@@ -8,7 +8,25 @@
     <%= javascript_include_tag 'https://code.highcharts.com'%>
   </head>
 
-  <body>
+  <nav class="navbar navbar-default navbar-fixed-top" role="naviation">
+      <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#background"> Top.deck </a>
+      </div>
+          <div class="collapse navbar-collapse" id="nav-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li role="presentation"><%= link_to 'Home', players_path %></li>
+          <li role="presentation"><%= link_to 'All Decks', decks_path %></li>
+        </ul>
+      </div>
+  </div>
+</nav>
   <p> | <%= link_to 'Back to Home', players_path %> | <%= link_to 'Decks', decks_path %> </p>
 
     <%= yield %>

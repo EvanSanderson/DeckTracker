@@ -1,11 +1,10 @@
 <h1> <%= @player.name %> </h1>
 <h2> TOTAL PLAYER WINS: <%= @total_wins %> | TOTAL PLAYER LOSSES: <%= @total_losses %> </h2>
-<h4> <%= link_to 'Create A Deck', new_player_deck_path(@player) %> </h4>
+<h4> <%= link_to 'Create A Deck', new_player_deck_path(@player) %> | <%= link_to 'Delete This Player', player_path(@player), method: :delete, data: { confirm: "Are you sure?"} %> </h4>
 
 <% @player.decks.each do |deck| %>
 
   <h4> <%= link_to deck.name, player_deck_path(@player, deck) %> | <%= deck.character_class %> </h4>
-  <p> <%= link_to 'Delete This Deck', player_deck_path(@player, deck), method: :delete %> </p>
     <img src="<%= deck.img_url %>">
 
   <% end %>

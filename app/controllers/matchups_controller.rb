@@ -24,6 +24,26 @@ class MatchupsController < ApplicationController
     @matchup = Matchup.new
   end
 
+  def increment_wins
+    @player = Player.find(params[:player_id])
+    @deck = Deck.find(params[:deck_id])
+    @matchup = Matchup.find(params[:id])
+    @matchup.wins += 1
+    @matchup.save
+
+    redirect_to player_deck_path(@player, @deck), notice: "Added a win!"
+  end
+
+def increment_losses
+  @player = Player.find(params[:player_id])
+  @deck = Deck.find(params[:deck_id])
+  @matchup = Matchup.find(params[:id])
+  @matchup.losses += 1
+  @matchup.save
+
+  redirect_to player_deck_path(@player, @deck), notice: "Added a loss!"
+end
+
   def create
     @deck = Deck.find(params[:deck_id])
     @matchup = @deck.matchups.create(params_matchup)

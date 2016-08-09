@@ -17,6 +17,7 @@ class PlayersController < ApplicationController
        @total_wins = @total_wins + deck.wins
        @total_losses = @total_losses + deck.losses
     end
+    @player.wins = @total
   end
 
   def create
