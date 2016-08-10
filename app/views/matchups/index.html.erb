@@ -8,7 +8,7 @@
 
 <div class="row">
 <% @matchups.each do |matchup| %>
-  <div class="col-md-3 matchups">
+  <div class="col-md-6 matchups">
 <%= link_to matchup.character_class, player_deck_matchup_path(@player, @deck, matchup) %> | <%= matchup.play_style %>
 <p> <%= matchup.wins %> wins against | <%= matchup.losses %> losses against </p>
 <p> <%= link_to 'Add a Win', increment_wins_player_deck_matchup_path(@player, @deck, matchup), method: :put %> | <%= link_to 'Add a Loss', increment_losses_player_deck_matchup_path(@player, @deck, matchup), method: :put %></p>

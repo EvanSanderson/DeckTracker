@@ -11,7 +11,7 @@
 
 <%= bar_chart [
   {name: "Class", data: @deck.matchups.map{|t| [t.character_class, t.wins] }},
-  {name: "Playstyle", data: @deck.matchups.map{|t| [t.play_style, t.wins] }}] %>
+  {name: "Playstyle", data: @deck.matchups.map{|t| [t.play_style, t.wins] }}], stacked: true %>
 </div>
 
 <div class="deck_bar">
@@ -19,7 +19,7 @@
 
   <%= bar_chart [
     {name: "Class", data: @deck.matchups.map{|t| [t.character_class, t.losses] }},
-    {name: "Playstyle", data: @deck.matchups.map{|t| [t.play_style, t.losses] }}] %>
+    {name: "Playstyle", data: @deck.matchups.map{|t| [t.play_style, t.losses] }}], stacked: true %>
 </div>
 
 <div class= "row">
