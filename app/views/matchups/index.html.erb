@@ -10,15 +10,15 @@
 <% @matchups.each do |matchup| %>
   <div class="col-md-3 matchups">
 <%= link_to matchup.character_class, player_deck_matchup_path(@player, @deck, matchup) %> | <%= matchup.play_style %>
-<p> <%= matchup.wins %> wins | <%= matchup.losses %> losses </p>
+<p> <%= matchup.wins %> wins against | <%= matchup.losses %> losses against </p>
 <p> <%= link_to 'Add a Win', increment_wins_player_deck_matchup_path(@player, @deck, matchup), method: :put %> | <%= link_to 'Add a Loss', increment_losses_player_deck_matchup_path(@player, @deck, matchup), method: :put %></p>
   </div>
 <% end %>
 </div>
 
 <%= column_chart [
-  {name: "Wins", data: @matchups.map{|t| [t.character_class, t.wins] }},
-  {name: "Losses", data: @matchups.map{|t| [t.character_class, t.losses] }}] %>
+  {name: "Wins Against", data: @matchups.map{|t| [t.character_class, t.wins] }},
+  {name: "Losses Against", data: @matchups.map{|t| [t.character_class, t.losses] }}] %>
 
 
 <div class = "matchups_pie">

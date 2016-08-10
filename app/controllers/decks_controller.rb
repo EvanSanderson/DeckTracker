@@ -23,7 +23,8 @@ class DecksController < ApplicationController
       @deck = @player.decks.create(params_deck)
 
       if @deck.save
-        redirect_to player_deck_path(@player, @deck), notice: "You've succesfully added a new deck!"
+        flash[:success] = "You've succesfully added a new deck!"
+        redirect_to player_deck_path(@player, @deck)
       else
         render 'new'
       end
@@ -39,7 +40,8 @@ class DecksController < ApplicationController
     @deck.update(params_deck)
 
     if @deck.save
-      redirect_to player_deck_path(@deck.player, @deck), notice: "You've succesfully updated the deck!"
+      flash[:success] = "You've succesfully updated the deck!"
+      redirect_to player_deck_path(@deck.player, @deck)
     else
       render 'edit'
     end
@@ -49,7 +51,8 @@ class DecksController < ApplicationController
     @deck = Deck.find(params[:id])
     @deck.destroy
 
-    redirect_to player_path(@deck.player), notice: "You've succesfully deleted this deck!"
+    flash[:success] = "You've succesfully deleted this deck!"
+    redirect_to player_path(@deck.player)
   end
 
 

@@ -25,7 +25,8 @@ class MatchupsController < ApplicationController
     @matchup.wins += 1
     @matchup.save
 
-    redirect_to player_deck_matchup_path(@player, @deck, @matchup), notice: "Added a win!"
+    flash[:success] = "Added a win!"
+    redirect_to player_deck_matchup_path(@player, @deck, @matchup)
   end
 
 def increment_losses
@@ -35,7 +36,8 @@ def increment_losses
   @matchup.losses += 1
   @matchup.save
 
-  redirect_to player_deck_matchup_path(@player, @deck, @matchup), notice: "Added a loss!"
+  flash[:success] = "Added a loss!"
+  redirect_to player_deck_matchup_path(@player, @deck, @matchup)
 end
 
   def create
@@ -43,7 +45,8 @@ end
     @matchup = @deck.matchups.create(params_matchup)
 
     if @matchup.save
-      redirect_to player_deck_matchup_path(@deck.player, @deck, @matchup), notice: "You've succesfully created a new matchup!"
+      flash[:success] = "You've succesfully created a new matchup!"
+      redirect_to player_deck_matchup_path(@deck.player, @deck, @matchup)
     else
       render 'new'
     end
@@ -63,7 +66,8 @@ end
     @matchup.update(params_matchup)
 
     if @matchup.save
-      redirect_to player_deck_path(@deck.player, @deck), notice: "You succesfully updated the matchup!"
+      flash[:success] = "You succesfully updated the matchup!"
+      redirect_to player_deck_path(@deck.player, @deck)
     else
       render 'edit'
     end
@@ -76,7 +80,8 @@ end
     @matchup = @deck.matchups.find(params[:id])
     @matchup.destroy
 
-    redirect_to player_deck_path(@deck.player, @deck), notice: "You succesfully deleted the matchup!"
+    flash[:success] = "You succesfully deleted the matchup!"
+    redirect_to player_deck_path(@deck.player, @deck)
   end
 
 

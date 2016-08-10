@@ -45,7 +45,8 @@ end
 def destroy
   @player = Player.find(params[:id])
   @player.destroy
-  redirect_to players_path, notice: "The player has been succesfully deleted!"
+  flash[:success] = "You succesfully deleted a player!"
+  redirect_to players_path
 end
 
 
