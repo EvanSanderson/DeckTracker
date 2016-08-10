@@ -58,7 +58,7 @@ class DecksController < ApplicationController
 
       private
         def params_deck
-          params.require(:deck).permit(:name, :character_class, :wins, :losses, :img_url)
+          params.require(:deck).permit(:name, :character_class, :wins, :losses, :img_url, :play_style)
         end
 
 end

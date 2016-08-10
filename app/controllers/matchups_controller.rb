@@ -26,7 +26,7 @@ class MatchupsController < ApplicationController
     @matchup.save
 
     flash[:success] = "Added a win!"
-    redirect_to player_deck_matchup_path(@player, @deck, @matchup)
+    redirect_to player_deck_matchups_path(@player, @deck)
   end
 
 def increment_losses
@@ -37,7 +37,7 @@ def increment_losses
   @matchup.save
 
   flash[:success] = "Added a loss!"
-  redirect_to player_deck_matchup_path(@player, @deck, @matchup)
+  redirect_to player_deck_matchups_path(@player, @deck)
 end
 
   def create

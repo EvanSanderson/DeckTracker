@@ -5,8 +5,8 @@ class Deck < ApplicationRecord
   has_many :matchups, dependent: :destroy
   belongs_to :player
   validates :name, presence: true
-  validates :wins, presence: true
-  validates :losses, presence: true
+  validates :character_class, presence: true
+  validates :play_style, presence: true
 
   def get_wins
     sum = 0

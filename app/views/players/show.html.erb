@@ -8,6 +8,11 @@
 
 <%= pie_chart({"wins" => @total_wins, "losses" => @total_losses}) %>
 
+<h3> Deck Wins By Playstyle </h3>
+<%= column_chart [
+  {name: "Wins", data: @player.decks.map{|t| [t.play_style, t.get_wins] }},
+  {name: "Losses", data: @player.decks.map{|t| [t.play_style, t.get_losses] }}] %>
+
 <div class="container-fluid">
 <div class="row">
 <% @player.decks.each do |deck| %>
@@ -16,6 +21,8 @@
   <h4> <%= link_to deck.name, player_deck_path(@player, deck) %> | <%= deck.character_class %> </h4>
 
     <img src="<%= deck.img_url %>">
+
+    <h4> Wins and Losses Against Specific Playstyles </h4>
 
     <%= column_chart [
       {name: "Wins", data: deck.matchups.map{|t| [t.play_style, t.wins] }},

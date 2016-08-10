@@ -1,7 +1,7 @@
 <div class = "heading" >
     <h1> <%= link_to @deck.player.name, player_path(@deck.player) %>'s <%= @deck.name %>  </h1>
     <h2> Wins: <%= @total_wins %> |  Losses: <%= @total_losses %>
-    <h3> <%= @deck.character_class %> </h3>
+    <h3> <%= @deck.character_class %> | <%= @deck.play_style %> </h3>
     <img src="<%= @deck.img_url %>">
     <h3> <%= link_to 'Add a Matchup', new_player_deck_matchup_path(@deck.player, @deck) %> | <%= link_to 'View Matchups', player_deck_matchups_path(@deck.player, @deck) %></h3>
 </div>

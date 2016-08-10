@@ -24,6 +24,11 @@
   </p>
 
   <p>
+    <%= f.label :play_style, "Select a Playstyle" %>
+    <%= f.select :play_style, ["Aggro", "Tempo", "Control", "Midrange", "Ramp", "Combo"] %>
+  </p>
+
+  <p>
     <%= f.label :img_url %>
     <%= f.text_field :img_url %>
   </p>
