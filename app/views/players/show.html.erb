@@ -1,5 +1,5 @@
 <div class= "heading">
-      <h1> <%= @player.name %> <%= link_to '(edit)', edit_player_path(@player) %></h1>
+      <h1> <%= link_to @player.name, edit_player_path(@player) %></h1>
 
       <h2> TOTAL PLAYER WINS: <%= @total_wins %> | TOTAL PLAYER LOSSES: <%= @total_losses %> </h2>
 
@@ -17,8 +17,10 @@
 
     <img src="<%= deck.img_url %>">
 
-    <%= bar_chart deck.matchups.group(:character_class).average(:wins), ytitle: "Avg Wins", xtitle: "Class Matchup" %>
-    <%= bar_chart deck.matchups.group(:character_class).average(:losses), ytitle: "Avg Losses", xtitle: "Class Matchup" %>
+    <%= column_chart [
+      {name: "Wins", data: deck.matchups.map{|t| [t.play_style, t.wins] }},
+      {name: "Losses", data: deck.matchups.map{|t| [t.play_style, t.losses] }}] %>
+
 </div>
   <% end %>
 </div>

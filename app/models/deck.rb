@@ -11,6 +11,9 @@ class Deck < ApplicationRecord
   def get_wins
     sum = 0
     self.matchups.each do |matchup|
+      if matchup.wins == nil
+        matchup.wins = 0
+      end
       sum += matchup.wins
     end
     sum
@@ -18,7 +21,11 @@ class Deck < ApplicationRecord
 
   def get_losses
     sum = 0
+
     self.matchups.each do |matchup|
+      if matchup.losses == nil
+        matchup.losses = 0
+      end
       sum += matchup.losses
     end
     sum

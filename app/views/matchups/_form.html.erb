@@ -1,30 +1,56 @@
-<%= form_for ([@deck.player, @deck, @matchup]) do |f| %>
+<%= form_for [@deck.player, @deck, @matchup], html: {class: 'form-horizontal'} do |f| %>
 
-  <p>
-    <%= f.label :character_class %>
-    <%= f.select :character_class, ["Druid", "Hunter", "Mage", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"] %>
-  </p>
+<% if @matchup.errors.any? %>
+  <div id="error_explanation">
+      <h1>
+        <%= pluralize(@matchup.errors.count, "error") %>
+        stopped the matchup from being created.  Here's why:
+      </h1>
+        <% @matchup.errors.full_messages.each do |msg| %>
+          <p> <%= msg %> </p>
+        <% end %>
+      </div>
+    <% end %>
 
-  <p>
-    <%= f.label :play_style %>
-    <%= f.select :play_style, ["Aggro", "Tempo", "Control", "Midrange", "Ramp", "Combo"] %>
-  </p>
+    <div class="field form-group">
+      <%= f.label :character_class, class: "col-md-1 control-label"  %>
+      <div class="col-md-5">
+    <%= f.select :character_class, ["Druid", "Hunter", "Mage", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"], class: 'form-control' %>
+  </div>
+</div>
 
-  <p>
-    <%= f.label :wins %>
-    <%= f.text_field :wins %>
-  </p>
+  <div class="field form-group">
+    <%= f.label :play_style, class: "col-md-1 control-label" %>
+    <div class="col-md-5">
+    <%= f.select :play_style, ["Aggro", "Tempo", "Control", "Midrange", "Ramp", "Combo"], class: 'form-control' %>
+  </div>
+</div>
 
-  <p>
-    <%= f.label :losses %>
-    <%= f.text_field :losses %>
-  </p>
+  <div class="field form-group">
+    <%= f.label :wins, class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+    <%= f.text_field :wins, class: 'form-control' %>
+  </div>
+</div>
 
-  <p>
-    <%= f.label :notes, "Add a Note" %>
-    <%= f.text_area :notes %>
-  </p>
+  <div class="field form-group">
+    <%= f.label :losses, class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+    <%= f.text_field :losses, class: 'form-control' %>
+  </div>
+</div>
 
-<%= f.submit %>
+  <div class="field form-group">
+    <%= f.label :notes, "Add a Note", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+    <%= f.text_area :notes, class: 'form-control' %>
+  </div>
+</div>
+
+  <div class="actions form-group">
+    <div class="col-md-10">
+      <%= f.submit %>
+  </div>
+</div>
 
 <% end %>

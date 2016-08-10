@@ -1,12 +1,15 @@
-<h1> Players <%= link_to new_player_path, class: "btn btn-primary btn-lg" do %><i class="glyphicon glyphicon-plus"></i>
+<h1> Players <%= link_to new_player_path, class: "btn btn-lg" do %><i class="glyphicon glyphicon-plus"></i>
   <% end %></h1>
+
+  <hr>
+  
 <div class = "row">
   <% @players.each do |player| %>
 
   <div class = "col-md-6 players_each">
 
 
-  <p> <%= link_to player.name, player_path(player), class: 'btn btn-success btn-lg' %> | <%= link_to 'edit', edit_player_path(player), class: 'btn btn-success btn-md' %></p>
+  <h1 class="player_index"> <%= link_to player.name, player_path(player), class: 'btn btn-lg' %> | <%= link_to 'edit', edit_player_path(player), class: 'btn btn-md' %></h1>
 
   <p> Wins: <%= player.get_wins %> </p>
 

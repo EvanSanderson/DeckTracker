@@ -1,17 +1,32 @@
 <div class="heading">
   <h1> Match-Ups </h1>
-  <p> <%= link_to "Back to #{@deck.name}", player_deck_path(@player, @deck) %> </p>
+  <h3> <%= link_to 'Add a Matchup', new_player_deck_matchup_path(@deck.player, @deck) %> </h3>
+
+  <hr>
+  <p> <%= link_to "Back to #{@deck.name}", player_deck_path(@player, @deck) %> | <%= link_to "Back to #{@deck.name}'s Matchups", player_deck_matchups_path(@player, @deck, @deck.matchups) %> </p>
 </div>
 
 <div class="row">
 <% @matchups.each do |matchup| %>
-  <div class="col-md-3 player_decks">
+  <div class="col-md-3 matchups">
 <%= link_to matchup.character_class, player_deck_matchup_path(@player, @deck, matchup) %> | <%= matchup.play_style %>
-<p> <%= matchup.wins %> | <%= matchup.losses %> </p>
+<p> <%= matchup.wins %> wins | <%= matchup.losses %> losses </p>
 <p> <%= link_to 'Add a Win', increment_wins_player_deck_matchup_path(@player, @deck, matchup), method: :put %> | <%= link_to 'Add a Loss', increment_losses_player_deck_matchup_path(@player, @deck, matchup), method: :put %></p>
   </div>
 <% end %>
 </div>
 
-<h1> Average Wins By Matchup </h1>
-<%= column_chart @matchups.group(:character_class).average(:wins), ytitle: "Avg Wins" %>
+<%= column_chart [
+  {name: "Wins", data: @matchups.map{|t| [t.character_class, t.wins] }},
+  {name: "Losses", data: @matchups.map{|t| [t.character_class, t.losses] }}] %>
+
+
+<div class = "matchups_pie">
+<h3> Wins Against Playstyles </h3>
+<%= pie_chart @matchups.group(:play_style).average(:wins) %>
+</div>
+
+<div class = "matchups_pie">
+  <h3> Losses Against Playstyles </h3>
+<%= pie_chart @matchups.group(:play_style).average(:losses) %>
+</div>

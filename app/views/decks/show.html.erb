@@ -1,20 +1,25 @@
 <div class = "heading" >
-    <h1> <%= link_to @deck.player.name, player_path(@deck.player) %>'s <%= @deck.name %>  | <%= link_to '(edit)', edit_player_deck_path(@deck.player, @deck) %> | <%= link_to '(delete)', player_deck_path(@deck.player, @deck), method: :delete, data: {confirm: "Are you sure?"} %></h1>
+    <h1> <%= link_to @deck.player.name, player_path(@deck.player) %>'s <%= @deck.name %>  </h1>
     <h2> Wins: <%= @total_wins %> |  Losses: <%= @total_losses %>
     <h3> <%= @deck.character_class %> </h3>
     <img src="<%= @deck.img_url %>">
     <h3> <%= link_to 'Add a Matchup', new_player_deck_matchup_path(@deck.player, @deck) %> | <%= link_to 'View Matchups', player_deck_matchups_path(@deck.player, @deck) %></h3>
 </div>
-<div class="row">
-  <div class="col-md-5 player_decks">
-    <h1> Wins By Playstyles </h1>
-    <%= bar_chart @deck.matchups.group(:play_style).average(:wins), ytitle: "Avg Wins" %>
-  </div>
 
-  <div class="col-md-5 player_decks">
-      <h1> Losses By Playstyles </h1>
-      <%= bar_chart @deck.matchups.group(:play_style).average(:losses), ytitle: "Avg Losses" %>
-  </div>
+<div class = "deck_bar">
+<h3> Wins By Class and Playstyle </h3>
+
+<%= bar_chart [
+  {name: "Class", data: @deck.matchups.map{|t| [t.character_class, t.wins] }},
+  {name: "Playstyle", data: @deck.matchups.map{|t| [t.play_style, t.wins] }}] %>
+</div>
+
+<div class="deck_bar">
+<h3> Losses By Class and Playstyle </h3>
+
+  <%= bar_chart [
+    {name: "Class", data: @deck.matchups.map{|t| [t.character_class, t.losses] }},
+    {name: "Playstyle", data: @deck.matchups.map{|t| [t.play_style, t.losses] }}] %>
 </div>
 
 <div class= "row">
@@ -22,3 +27,5 @@
     <p> <%= link_to 'View Cards', player_deck_cards_path(@deck.player, @deck) %> | <%= link_to '(+)', new_player_deck_card_path(@deck.player, @deck) %>
   </div>
 </div>
+
+<h3 style="text-align:center; margin-top:5%; margin-bottom: 5%"> <%= link_to 'edit deck', edit_player_deck_path(@deck.player, @deck) %> | <%= link_to 'delete deck', player_deck_path(@deck.player, @deck), method: :delete, data: {confirm: "Are you sure?"} %> </h3>

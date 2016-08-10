@@ -1,7 +1,9 @@
 <div class ="heading">
   <h1> <%= @matchup.character_class %> | <%= @matchup.play_style %> </h1>
+  <hr>
   <p> <%= link_to "Back to #{@matchup.deck.name}", player_deck_path(@matchup.deck.player, @matchup.deck) %> </p>
 </div>
+
 
 <div class="matchup">
   <p> <%= @matchup.wins %> wins | <%= @matchup.losses %> losses </p>
@@ -11,4 +13,19 @@
   <p> <%= link_to 'Edit Matchup', edit_player_deck_matchup_path(@matchup.deck.player, @matchup.deck, @matchup) %> |  <%= link_to 'Delete This Matchup', player_deck_matchup_path(@player, @deck, @matchup), method: :delete %> </p>
 
 <p> <%= @matchup.notes %> </p>
+</div>
+
+
+<div class="matchup_chart">
+<%= column_chart({"wins" => @matchup.wins, "losses" => @matchup.losses}) %>
+</div>
+
+<hr>
+
+<div class = "matchup_pie">
+<%= pie_chart({"Total Deck Wins" => @deck.get_wins, "Wins Against This Matchup" => @matchup.wins}) %>
+</div>
+
+<div class="matchup_pie">
+<%= pie_chart({"Total Deck Losses" => @deck.get_losses, "Losses Against This Matchup" => @matchup.losses}) %>
 </div>

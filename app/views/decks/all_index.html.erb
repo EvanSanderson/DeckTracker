@@ -1,6 +1,7 @@
 <h1> Decks </h1>
-<div class = "decks">
   <% @decks.each do |deck| %>
+  <div class = "decks">
     <h2> <%= link_to deck.name, player_deck_path(deck.player, deck) %> | <%= link_to deck.player.name, player_path(deck.player) %></h2>
     <img src="<%= deck.img_url %>">
+  </div>
   <% end %>
