@@ -22,10 +22,13 @@
 
 <hr>
 
-<div class = "matchup_pie">
+<div class="row">
+
+<div class = "col-md-12 matchup_pie">
 <%= pie_chart({"Total Deck Wins" => @deck.get_wins, "Wins Against This Matchup" => @matchup.wins}) %>
 </div>
 
-<div class="matchup_pie">
+<div class="col-md-12 matchup_pie">
 <%= pie_chart({"Total Deck Losses" => @deck.get_losses, "Losses Against This Matchup" => @matchup.losses}) %>
+</div>
 </div>

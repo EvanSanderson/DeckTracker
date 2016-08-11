@@ -20,13 +20,14 @@
   {name: "Wins Against", data: @matchups.map{|t| [t.character_class, t.wins] }},
   {name: "Losses Against", data: @matchups.map{|t| [t.character_class, t.losses] }}] %>
 
-
-<div class = "matchups_pie">
+<div class="row">
+<div class = "col-md-4 matchups_pie">
 <h3> Wins Against Playstyles </h3>
 <%= pie_chart @matchups.group(:play_style).average(:wins) %>
 </div>
 
-<div class = "matchups_pie">
+<div class = "col-md-4 matchups_pie">
   <h3> Losses Against Playstyles </h3>
 <%= pie_chart @matchups.group(:play_style).average(:losses) %>
+</div>
 </div>
