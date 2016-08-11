@@ -7,24 +7,22 @@
 </div>
 
 <div class = "deck_bar">
-<h3> Wins By Class and Playstyle </h3>
+<h3> Wins and Losses Against Specific Classes </h3>
 
 <%= bar_chart [
-  {name: "Class", data: @deck.matchups.map{|t| [t.character_class, t.wins] }},
-  {name: "Playstyle", data: @deck.matchups.map{|t| [t.play_style, t.wins] }}], stacked: true %>
+  {name: "Wins", data: @deck.matchups.map{|t| [t.character_class, t.wins] }},
+  {name: "Losses", data: @deck.matchups.map{|t| [t.character_class, t.losses] }}], {stacked: true} %>
 </div>
 
-<div class="deck_bar">
-<h3> Losses By Class and Playstyle </h3>
+<h3> Wins and Losses Against Specific Playstyles </h3>
 
-  <%= bar_chart [
-    {name: "Class", data: @deck.matchups.map{|t| [t.character_class, t.losses] }},
-    {name: "Playstyle", data: @deck.matchups.map{|t| [t.play_style, t.losses] }}], stacked: true %>
-</div>
+<%= bar_chart [
+  {name: "Wins", data: @deck.matchups.map{|t| [t.play_style, t.wins] }},
+  {name: "Losses", data: @deck.matchups.map{|t| [t.play_style, t.losses] }}], {stacked: true} %>
 
 <div class= "row">
     <div class="col-md-6">
-    <p> <%= link_to 'View Cards', player_deck_cards_path(@deck.player, @deck) %> | <%= link_to '(+)', new_player_deck_card_path(@deck.player, @deck) %>
+    <p> <%= link_to 'View Cards', player_deck_card_path(@deck.player, @deck) %> | <%= link_to '(+)', new_player_deck_card_path(@deck.player, @deck) %>
   </div>
 </div>
 
